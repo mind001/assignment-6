@@ -8,7 +8,7 @@ namespace assignment6 {
 
 using Edge = std::pair<int, int>;
 
-struct VertexInfo {
+struct Vertex {
   int id;
 };
 

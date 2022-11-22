@@ -6,8 +6,11 @@
 
 namespace assignment6 {
 
+using ALDG = boost::adjacency_list<boost::vecS, boost::vecS, boost::directedS, Vertex>;
+
 class AdjacencyListDiGraph {
-  boost::adjacency_list<boost::vecS, boost::vecS, boost::directedS, VertexInfo> g_;
+  ALDG g_;
+
 
 public:
   AdjacencyListDiGraph() = default;
