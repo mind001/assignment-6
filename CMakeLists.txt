@@ -31,6 +31,7 @@ endif()
 find_package(Boost)
 if (NOT Boost_FOUND)
     message(STATUS "Boost not found. Downloading.")
+    include(FetchContent)
     FetchContent_Declare(boost
             GIT_REPOSITORY https://github.com/boostorg/boost.git
             GIT_TAG boost-1.80.0
