@@ -19,8 +19,21 @@ TEST_CASE("Test construction of adjacency digraph") {
   AdjacencyListDiGraph G = AdjacencyListDiGraph(vertices, edges);
 }
 
+TEST_CASE("Test IsSame") {
+  AdjacencyListDiGraph G = Claw();
+  AdjacencyListDiGraph H = Claw();
+
+  CHECK(G.IsSame(H));
+}
+
 TEST_CASE("Test transpose") {
   AdjacencyListDiGraph G = Claw();
   std::vector<int> vertices {0,1,2,3};
   std::vector<Edge> edges {Edge(1,0), Edge(2,0), Edge(3,0)};
+
+  AdjacencyListDiGraph expected_transpose = AdjacencyListDiGraph(vertices, edges);
+
+  AdjacencyListDiGraph result = G.Transpose();
+
+  CHECK(expected_transpose.IsSame(result));
 }
