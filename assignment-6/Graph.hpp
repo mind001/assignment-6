@@ -19,17 +19,16 @@ struct Vertex {
 
 template <class graph> struct vertex_invariant {
   using Map = std::map<int, size_t>;
-  using result_type = size_t;
   using argument_type = typename boost::graph_traits<graph>::vertex_descriptor;
 
   const graph &m_graph;
   Map mappings;
 
-  size_t operator()(argument_type u) const {
+  auto operator()(argument_type u) const -> size_t {
     return mappings.at(boost::get(boost::vertex_name, m_graph, u));
   }
 
-  size_t max() const noexcept { return mappings.size(); }
+  [[nodiscard]] auto max() const noexcept -> size_t { return mappings.size(); }
 
   void collect_names() noexcept {
     for (auto vd : boost::make_iterator_range(boost::vertices(m_graph))) {
@@ -43,10 +42,11 @@ template <class graph> struct vertex_invariant {
     }
   }
 };
+;
 
 // https://stackoverflow.com/a/34520444/424173
 template <typename graph>
-bool is_same_graph(const graph &g1, const graph &g2) noexcept {
+auto is_same_graph(const graph &g1, const graph &g2) noexcept -> bool {
   auto ref_index_map = get(boost::vertex_index, g1);
   using vd = typename boost::graph_traits<graph>::vertex_descriptor;
   std::vector<vd> iso(boost::num_vertices(g1));
@@ -64,6 +64,16 @@ bool is_same_graph(const graph &g1, const graph &g2) noexcept {
           .template vertex_invariant1(inv1)
           .template vertex_invariant2(inv2));
 }
+
+template <typename graph> class BaseGraph {
+protected:
+  graph g_;
+
+public:
+  auto IsSame(BaseGraph<graph> other) -> bool {
+    return is_same_graph(g_, other.g_);
+  }
+};
 
 class Graph {
 public:

@@ -12,12 +12,7 @@ AdjacencyListDiGraph::AdjacencyListDiGraph(std::vector<int> vertices,
   }
 }
 
-
-
 auto AdjacencyListDiGraph::Transpose() -> AdjacencyListDiGraph {
   throw std::runtime_error("Implement me!");
-}
-auto AdjacencyListDiGraph::IsSame(AdjacencyListDiGraph other) -> bool {
-  return is_same_graph(g_, other.g_);
 }
 } // namespace assignment6
