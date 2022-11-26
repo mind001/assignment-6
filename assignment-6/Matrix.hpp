@@ -2,6 +2,7 @@
 
 using namespace boost::numeric::ublas;
 
+// Define equality for boost matrices for use in AdjacencyMatrixDiGraph::IsSame
 // https://stackoverflow.com/a/3120784/424173
 template <typename T>
 auto operator==(const matrix<T> &m1, const matrix<T> &m2) -> bool {

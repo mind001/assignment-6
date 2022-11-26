@@ -59,8 +59,17 @@ add_library(
   assignment-6/AdjacencyMatrixDiGraph.cpp
   assignment-6/AdjacencyMatrixDiGraph.hpp)
 
-add_executable(GraphTest assignment-6/AdjacencyListDiGraph.test.cpp)
+add_executable(AdjacencyListTest assignment-6/AdjacencyListDiGraph.test.cpp
+                                 assignment-6/Graphs.hpp)
+target_link_libraries(AdjacencyListTest Doctest Graph)
+
+add_executable(AdjacencyMatrixTest assignment-6/AdjacencyMatrixDiGraph.test.cpp
+                                   assignment-6/Graphs.hpp)
+target_link_libraries(AdjacencyMatrixTest Doctest Graph)
+
+add_executable(GraphTest assignment-6/Graph.test.cpp assignment-6/Graphs.hpp)
 target_link_libraries(GraphTest Doctest Graph)
 
+add_test(AdjacencyListTest AdjacencyListTest)
+add_test(AdjacencyMatrixTest AdjacencyMatrixTest)
 add_test(GraphTest GraphTest)
-

@@ -2,38 +2,24 @@
 
 #include "doctest/doctest.h"
 #include "AdjacencyListDiGraph.hpp"
+#include "Graphs.hpp"
 
 using namespace assignment6;
 
-auto Claw() -> AdjacencyListDiGraph {
-  std::vector<int> vertices {0,1,2,3};
-  std::vector<Edge> edges {Edge(0,1), Edge(0,2), Edge(0,3)};
 
-  return AdjacencyListDiGraph(vertices, edges); // NOLINT
+TEST_CASE("Test transpose: CLAW") {
+
+  AdjacencyListDiGraph result = CLAW_LIST.Transpose();
+
+  CHECK(TRANSPOSE_CLAW_LIST.IsSame(result));
 }
 
-TEST_CASE("Test construction of adjacency digraph") {
-  std::vector<int> vertices {0,1,2,3};
-  std::vector<Edge> edges {Edge(0,1), Edge(0,2)};
-
-  AdjacencyListDiGraph G = AdjacencyListDiGraph(vertices, edges);
+TEST_CASE("Test transpose : D1") {
+  AdjacencyListDiGraph result = D1_LIST.Transpose();
+  CHECK(D1_TRANSPOSE_LIST.IsSame(result));
 }
 
-TEST_CASE("Test IsSame") {
-  AdjacencyListDiGraph G = Claw();
-  AdjacencyListDiGraph H = Claw();
-
-  CHECK(G.IsSame(H));
-}
-
-TEST_CASE("Test transpose") {
-  AdjacencyListDiGraph G = Claw();
-  std::vector<int> vertices {0,1,2,3};
-  std::vector<Edge> edges {Edge(1,0), Edge(2,0), Edge(3,0)};
-
-  AdjacencyListDiGraph expected_transpose = AdjacencyListDiGraph(vertices, edges);
-
-  AdjacencyListDiGraph result = G.Transpose();
-
-  CHECK(expected_transpose.IsSame(result));
+TEST_CASE("Test transpose : D2") {
+  AdjacencyListDiGraph result = D2_LIST.Transpose();
+  CHECK(D2_TRANSPOSE_LIST.IsSame(result));
 }
