@@ -6,15 +6,15 @@
 
 namespace assignment6 {
 
-using ALDG = boost::adjacency_list<boost::vecS, boost::vecS, boost::directedS, boost::property<boost::vertex_name_t, int>>;
-
-class AdjacencyListDiGraph : public BaseGraph<ALDG> {
-
+class AdjacencyListDiGraph {
+private:
+  std::set<int> vertices_;
+  std::map<int, std::set<int>> adjacent_vertices_;
 public:
   AdjacencyListDiGraph() = default;
   AdjacencyListDiGraph(std::vector<int>, std::vector<Edge>);
 
-//  auto IsSame(AdjacencyListDiGraph other) -> bool;
+  auto IsSame(AdjacencyListDiGraph other) -> bool;
 
   auto Transpose() -> AdjacencyListDiGraph;
 };
